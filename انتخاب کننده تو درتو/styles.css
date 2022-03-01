@@ -1,6 +1,6 @@
-div>p {
+#container>p {
     color: indigo !important;
 }
-p {
+#container~p {
     color: indianred !important;
 }
