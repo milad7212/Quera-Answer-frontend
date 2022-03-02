@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 600px;
+}
+.table {
+    empty-cells: hide;
+}
+.table tbody {
+    background-color: #aeb6bf;
+}
+.table td {
+    background-color: #fff;
+}
