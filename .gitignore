@@ -4,3 +4,4 @@
 .pnp.js
 Dockerfile
 /React/unit-conversion/node_modules
+/React/input-mask/node_modules
