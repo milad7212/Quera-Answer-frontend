@@ -5,4 +5,5 @@
 Dockerfile
 /React/unit-conversion/node_modules
 /React/input-mask/node_modules
+/React/*/node_modules
 */node_modules
