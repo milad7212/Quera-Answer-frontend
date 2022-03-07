@@ -25,6 +25,22 @@ const MusicPlayer = () => {
      * Define your state here
      */
   });
+  React.useEffect(() => {
+    if(state.isPlaying){
+     Audio.src=state.nowMusic.path;
+      // console.log(Audio.src(state.nowMusic.path));
+      Audio.play();
+      // const audio = Audio;
+      // audio.play();
+    
+      // return () => {
+       
+      //   audio.pause();
+      //   audio.currentTime = 0;
+      // };
+    }
+  }, [state])
+  
 
   const next = () => {
     // TODO Implement this function
@@ -37,6 +53,15 @@ const MusicPlayer = () => {
   const play = () => {
     // TODO Implement this function
     setState({...state,isPlaying:state.isPlaying ? false :true })
+    if(state.isPlaying){
+      Audio.src=state.nowMusic.path;
+      
+       Audio.play();
+       
+     }else{
+        Audio.pause();
+     }
+
     // Audio(state.nowMusic.path()).play();
     
 
