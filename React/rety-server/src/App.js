@@ -1,0 +1,64 @@
+import { useEffect, useState } from "react";
+function App({ firstRetryDelay, maxAttempts, url }) {
+  const [attemptCount, setAttemptCount] = useState(0);
+  const [okServer, setOkServer] = useState(true);
+  useEffect(() => {
+    async function fetchData() {
+      if ( attemptCount < maxAttempts && okServer) {
+        fetch(url).then((res) => {
+          console.log(res.status);
+          if (res.status === 200) {
+            console.log("Success");
+            setTimeout(async () => {
+              setAttemptCount((e) => e + 1);
+            }, firstRetryDelay * attemptCount);
+          } else {
+            setOkServer(false);
+          }
+        });
+        
+        
+      }
+    }
+    fetchData();
+  }, [attemptCount]);
+
+  return (
+    <div>
+      {attemptCount === 0 && <p id="message">First attempt...</p>}
+
+      <div id="result">
+        {attemptCount >= 1 && attemptCount < maxAttempts && okServer && (
+          <p>
+            <span>
+              Attempt {attemptCount} done. Retrying in{" "}
+              {firstRetryDelay * attemptCount} milliseconds...
+            </span>
+          </p>
+        )}
+        {attemptCount === maxAttempts && okServer && (
+          <p>
+            <span>Success after {attemptCount} attempts.</span>
+          </p>
+        )}
+
+        {!okServer && (
+          <p>
+            <span>Failed after {attemptCount+1} attempts.</span>
+          </p>
+        )}
+        <button
+          onClick={() => {
+            setOkServer(true);
+
+            setAttemptCount(0);
+          }}
+        >
+          Resend requests
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
