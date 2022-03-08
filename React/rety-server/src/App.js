@@ -12,7 +12,8 @@ function App({ firstRetryDelay, maxAttempts, url }) {
             setTimeout(async () => {
               setAttemptCount((e) => e + 1);
             }, firstRetryDelay * attemptCount);
-          } else {
+          }
+           if (res.status === 500) {
             setOkServer(false);
           }
         });
