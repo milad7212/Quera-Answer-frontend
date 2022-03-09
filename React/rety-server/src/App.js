@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 function App({ firstRetryDelay, maxAttempts, url }) {
   const [attemptCount, setAttemptCount] = useState(0);
   const [okServer, setOkServer] = useState(true);
+
   useEffect(() => {
     async function fetchData() {
-      if ( attemptCount < maxAttempts && okServer) {
+      if (attemptCount < maxAttempts && okServer) {
         fetch(url).then((res) => {
           console.log(res.status);
           if (res.status === 200) {
@@ -13,12 +14,10 @@ function App({ firstRetryDelay, maxAttempts, url }) {
               setAttemptCount((e) => e + 1);
             }, firstRetryDelay * attemptCount);
           }
-           if (res.status === 500) {
+          if (res.status === 500) {
             setOkServer(false);
           }
         });
-        
-        
       }
     }
     fetchData();
@@ -27,16 +26,14 @@ function App({ firstRetryDelay, maxAttempts, url }) {
   return (
     <div>
       {attemptCount === 0 && <p id="message">First attempt...</p>}
+      {attemptCount >= 1 && attemptCount < maxAttempts && okServer && (
+        <p id="message">
+          Attempt {attemptCount} done. Retrying in{" "}
+          {firstRetryDelay * attemptCount} milliseconds...
+        </p>
+      )}
 
       <div id="result">
-        {attemptCount >= 1 && attemptCount < maxAttempts && okServer && (
-          <p>
-            <span>
-              Attempt {attemptCount} done. Retrying in{" "}
-              {firstRetryDelay * attemptCount} milliseconds...
-            </span>
-          </p>
-        )}
         {attemptCount === maxAttempts && okServer && (
           <p>
             <span>Success after {attemptCount} attempts.</span>
@@ -45,7 +42,7 @@ function App({ firstRetryDelay, maxAttempts, url }) {
 
         {!okServer && (
           <p>
-            <span>Failed after {attemptCount+1} attempts.</span>
+            <span>Failed after {attemptCount + 1} attempts.</span>
           </p>
         )}
         <button
