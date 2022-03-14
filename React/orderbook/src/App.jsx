@@ -28,11 +28,7 @@ function App({ data }) {
                     type={ORDER_TYPE.SELL}
                     price={item.price}
                     amount={item.quantity}
-                    bgWidth={
-                      +((item.total / mostTotal) * 100)
-                        .toString()
-                        .match(/^-?\d+(?:\.\d{0,2})?/)[0]
-                    }
+                    bgWidth={`${((item.total / mostTotal) * 100).toFixed(2)}%`}
                     total={item.total}
                   />
                 </>
@@ -49,11 +45,7 @@ function App({ data }) {
                     type={ORDER_TYPE.BUY}
                     price={item.price}
                     amount={item.quantity}
-                    bgWidth={
-                      +((item.total / mostTotal) * 100)
-                        .toString()
-                        .match(/^-?\d+(?:\.\d{0,2})?/)[0]
-                    }
+                    bgWidth={`${((item.total / mostTotal) * 100).toFixed(2)}%`}
                     total={item.total}
                   />
                 </>
