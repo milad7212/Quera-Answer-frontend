@@ -1,5 +1,21 @@
 // You can use this file to define your functions
 import { ORDER_TYPE } from "../types";
+
+const addTotal = (arr) => {
+    let finalArr = [];
+    arr.map((el, index) => {
+        let objHelper = {...el };
+        if (index == 0) {
+            objHelper.total = el.quantity;
+            finalArr.push(objHelper);
+        } else {
+            objHelper.total = el.quantity + finalArr[index - 1].total;
+            finalArr.push(objHelper);
+        }
+    });
+    return finalArr;
+};
+
 export const sortSellData = (data) => {
     let obj = {};
     let arr = [];
@@ -17,7 +33,7 @@ export const sortSellData = (data) => {
         arr.push({ quantity: value, price: key, type: "sell" });
         console.log(key, value);
     }
-    return arr;
+    return addTotal(arr);
 };
 export const sortBuyData = (data) => {
     let obj = {};
@@ -33,8 +49,12 @@ export const sortBuyData = (data) => {
             }
         });
     for (let [key, value] of Object.entries(obj)) {
-        arr.push({ quantity: value, price: key, type: "buy" });
-        console.log(key, value);
+        arr.unshift({ quantity: value, price: key, type: "buy" });
+
     }
-    return arr;
+    return addTotal(arr);
+};
+
+export const lastTotal = (data) => {
+    return data[data.length - 1].total;
 };
