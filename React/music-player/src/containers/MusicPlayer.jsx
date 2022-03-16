@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Musics from "../data/Musics";
 import Next from "../assets/next.svg";
 import Prev from "../assets/prev.svg";
@@ -11,35 +11,38 @@ import Container from "../components/Container";
 import Audio from "../models/Audio";
 
 const MusicPlayer = () => {
+  const audioRef = useRef(Audio);
+  const intervalRef = useRef();
+  const [trackProgress, setTrackProgress] = useState();
   const [state, setState] = React.useState({
     isPlaying: false,
     audios: Musics,
     nowMusic: Musics[0],
     progress: 0,
-    duration: 0,
-    // currentTime: 0,
-    // isSeeking:false,
-    // isEnded:false,
-
-    /**
-     * Define your state here
-     */
   });
-  // React.useEffect(() => {
-  //   console.log("Audio :>> ", Audio.currentTime);
-  //   if (state.isPlaying) {
-  //     Audio.src = state.nowMusic.path;
-  //     // console.log(Audio.src(state.nowMusic.path));
-  //     Audio.play();
 
-  //   } else {
-  //     Audio.pause();
-  //   }
-  // }, [state]);
+  const startTimer = () => {
+    if (audioRef.current.currentTime == audioRef.current.duration) {
+      audioRef.current.src = Musics[state.progress + 1];
+      setState({
+        ...state,
+        progress: state.progress + 1,
+        nowMusic: Musics[state.progress + 1],
+      });
+    }
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setTrackProgress(audioRef.current.currentTime);
+    }, 100);
+  };
+
+  useEffect(() => {
+    startTimer();
+  }, [trackProgress]);
 
   const next = () => {
     // TODO Implement this function
-    Audio.src = Musics[state.progress + 1];
+    audioRef.current.src = Musics[state.progress + 1];
     setState({
       ...state,
       progress: state.progress + 1,
@@ -48,7 +51,8 @@ const MusicPlayer = () => {
   };
   const prev = () => {
     // TODO Implement this function
-    Audio.src = Musics[state.progress - 1];
+    audioRef.current.src = Musics[state.progress - 1];
+
     setState({
       ...state,
       progress: state.progress - 1,
@@ -59,11 +63,11 @@ const MusicPlayer = () => {
     // TODO Implement this function
     console.log("Audio. :>> ", Audio);
     if (!state.isPlaying) {
-      Audio.src = state.nowMusic.path;
+      audioRef.current.src = state.nowMusic.path;
       // console.log(Audio.src(state.nowMusic.path));
-      Audio.play();
+      audioRef.current.play();
     } else {
-      Audio.pause();
+      audioRef.current.pause();
     }
     setState({ ...state, isPlaying: !state.isPlaying });
 
@@ -73,7 +77,11 @@ const MusicPlayer = () => {
   return (
     <Container>
       <MusicTitle title={state.nowMusic.name} />
-      <Progress currentTime={Audio.currentTime * 100} />
+      <Progress
+        currentTime={
+          (audioRef.current.currentTime / audioRef.current.duration) * 100
+        }
+      />
 
       <div className="row justify-content-center">
         <Button
