@@ -2,6 +2,17 @@ import { useState } from "react";
 
 export function useStack() {
     // ...
+    const [stack, setStack] = useState([])
+    const push=(item)=>{
+        setStack([...stack,item])
+    }
+    const pop =()=>{
+        let arr=[...stack]
+        arr.pop()
+        setStack(arr)
+    }
+
+    return {stack,push,pop }
 }
 
 export function useCounter(start, finish) {

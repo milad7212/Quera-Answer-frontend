@@ -6,7 +6,7 @@ export function Demo() {
     <div className="demo">
       <CounterDemo />
       <hr />
-      {/* <StackDemo/> */}
+      <StackDemo/>
     </div>
   );
 }
