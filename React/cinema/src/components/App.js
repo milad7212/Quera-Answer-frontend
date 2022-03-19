@@ -8,14 +8,14 @@ export default function App() {
     <>
       <Router>
         <Switch>
-          <Route path="/about"></Route>
-          <Route path="/users"></Route>
-          <Route path="/">
+          
+        <Route path="/">
             <MovieDetail />
           </Route>
           <Route path="*">
             <NotFound />
           </Route>
+         
         </Switch>
       </Router>
     </>

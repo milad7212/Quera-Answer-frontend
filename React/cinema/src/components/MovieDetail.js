@@ -12,6 +12,7 @@ export default class MovieDetail extends React.Component {
     render() {
         return (
             <div className='movie-detail container'>
+                <h1>heeeeeeeeeeellllllllllo</h1>
                 <img className='movie-banner' src={this.state.movie.banner} alt=""/>
                 <div className="detail-body">
                     <div>
