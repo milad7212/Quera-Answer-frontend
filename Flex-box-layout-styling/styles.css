@@ -24,4 +24,23 @@ p {
 
 
 /* your code here */
+.row{
+    display: flex;
+}
 
+ .wall{
+    background-color: #05b37b;
+    
+}
+.row:nth-child(1) > .block {
+    background-color: #05b37b;
+}
+.row:last-child > .block {
+    background-color: #05b37b;
+}
+.row > .block:last-child {
+    background-color: #05b37b;
+}
+.row > .block:first-child {
+    background-color: #05b37b;
+}
