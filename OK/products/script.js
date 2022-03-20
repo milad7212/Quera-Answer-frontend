@@ -53,4 +53,7 @@ document
 
 function changeProducts() {
   // your code here...
+  let newProduct=products.map((el)=>{return{...el, price:el.price/2,date:new Date(el.date*1000).toLocaleDateString()}})
+  
+  renderProducts(newProduct)
 }
