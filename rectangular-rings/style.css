@@ -1,0 +1,39 @@
+#container{
+    width: 400px;
+    height:400px;
+    background-color: #D5D8DC;
+    margin: 10px 0 0 10px;
+    position: relative;
+}
+.right{
+    position: absolute;
+    background-color: #2ECC71;
+    
+}
+.right:first-child{
+    height:10%;
+    width:80%;
+    right:0;
+   
+}
+.right:nth-child(2){
+    height:10%;
+    width:80%;
+    top:70%;
+    right:0;
+   
+}
+.right:nth-child(3){
+    height:80%;
+    width:10%;
+    top:0%;
+    right:0;
+   
+}
+.right:nth-child(4){
+    height:80%;
+    width:10%;
+    top:0%;
+    right:70%;
+   
+}

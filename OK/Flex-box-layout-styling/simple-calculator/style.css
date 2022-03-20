@@ -1,0 +1,115 @@
+@font-face {
+    font-family: DigitalNumbers;
+    font-style: normal;
+    font-weight: normal;
+    src: url("./DigitalNumbers.woff") format("woff");
+}
+@font-face {
+    font-family: RobotoCondensed;
+    font-style: normal;
+    font-weight: normal;
+    src: url("./RobotoCondensed.woff") format("woff");
+}
+
+
+
+body {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.key {
+    font-size: 1.5em;
+}
+
+#result {
+    text-align: right;
+    font-size: 3.5em;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#app{
+    height:70%;
+    min-height:280px;
+    width:80%;
+    max-width:580px;
+}
+
+
+#result{
+    height:28%;
+    color: #444;
+    background-color: #EEE;
+    font-family: DigitalNumbers;
+}
+#keypad{
+    height:72%;
+    width:100%;
+    color: #DDD;
+    display:grid;
+    grid-template-columns: 54fr 46fr;
+    
+    font-family: RobotoCondensed;
+}
+#nums{
+    
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+    
+}
+#nums .key{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#nums .key:nth-child(odd){
+    
+    background-color: #095057;
+}
+#nums .key:nth-child(even){
+    background-color: #19676E;
+}
+#ops{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+#ops .key{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* #ops .key:nth-child(odd){
+    background-color: #D34E47;
+}
+#ops .key:nth-child(even){
+    background-color: #B52D26;
+} */
+
+#ops .key:nth-child(5){
+    grid-row:3/5;
+    gird-column:1/2;
+    
+}
+##ops .key:nth-child(even){
+    background-color: #B52D26;
+}
+#one{
+    background-color: #D34E47;
+}
+#two{
+    background-color: #B52D26;
+}
+#three{
+    background-color:#C43E37
+}
