@@ -7,6 +7,8 @@ function App() {
 
   return (
      <div className="App">
+        <MessageList messages={[{me:'me',body:'سلام'},{body:'سلام'}]} />
+       <MessageForm />
      </div>
   );
 }
