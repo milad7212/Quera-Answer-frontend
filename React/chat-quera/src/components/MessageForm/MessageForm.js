@@ -1,10 +1,23 @@
-import React from 'react';
-import './MessageForm.css';
+import React, { useEffect, useRef, useState } from "react";
+import "./MessageForm.css";
 
 function MessageForm({ onMessageSend }) {
+  const inputRef = useRef();
+  const [valueInput, setValueInput] = useState("");
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
-  function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    if (!/^ *$/.test(valueInput)) {
+      onMessageSend(valueInput);
+      setValueInput("");
+
+      ;
+    }
   }
+
   return (
     <form
       className="MessageForm"
@@ -13,6 +26,9 @@ function MessageForm({ onMessageSend }) {
     >
       <div className="input-container">
         <input
+          ref={inputRef}
+          value={valueInput}
+          onChange={(e) => setValueInput(e.target.value)}
           data-testid="input-message"
           type="text"
           placeholder="پیام خود را اینجا بنویسید..."
