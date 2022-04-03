@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test action creators sample_test_guess_word 1`] = `
+Object {
+  "guessedWords": Array [
+    Object {
+      "guessedWord": "hook",
+      "letterMatchCount": 0,
+    },
+    Object {
+      "guessedWord": "auto",
+      "letterMatchCount": 1,
+    },
+  ],
+  "secretWord": "Library",
+  "success": false,
+}
+`;
