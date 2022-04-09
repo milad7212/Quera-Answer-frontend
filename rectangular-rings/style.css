@@ -1,39 +1,71 @@
-#container{
+#container {
     width: 400px;
-    height:400px;
-    background-color: #D5D8DC;
+    height: 400px;
+    background-color: #d5d8dc;
     margin: 10px 0 0 10px;
     position: relative;
 }
-.right{
+.right {
     position: absolute;
-    background-color: #2ECC71;
-    
+    background-color: #2ecc71;
 }
-.right:first-child{
-    height:10%;
-    width:80%;
-    right:0;
-   
+.right:hover *.right {
+    z-index: 9999;
 }
-.right:nth-child(2){
-    height:10%;
-    width:80%;
-    top:70%;
-    right:0;
-   
+.right:first-child {
+    height: 10%;
+    width: 80%;
+    right: 0;
 }
-.right:nth-child(3){
-    height:80%;
-    width:10%;
-    top:0%;
-    right:0;
-   
+.right:nth-child(2) {
+    height: 10%;
+    width: 80%;
+    top: 70%;
+    right: 0;
 }
-.right:nth-child(4){
-    height:80%;
-    width:10%;
-    top:0%;
-    right:70%;
-   
+.right:nth-child(3) {
+    height: 80%;
+    width: 10%;
+    top: 0%;
+    right: 0;
+}
+.right:nth-child(4) {
+    height: 80%;
+    width: 10%;
+    top: 0%;
+    right: 70%;
+}
+
+/* left */
+
+.left {
+    position: absolute;
+    background-color: #e74c3c;
+}
+.left:hover {
+    z-index: 1000;
+}
+div:nth-child(5) {
+    height: 10%;
+    width: 80%;
+    left: 0;
+    top: 20%;
+}
+div:nth-child(6) {
+    height: 10%;
+    width: 80%;
+    bottom: 0;
+    left: 0;
+}
+div:nth-child(7) {
+    height: 80%;
+    width: 10%;
+    top: 20%;
+    left: 0;
+}
+div:nth-child(8) {
+    height: 80%;
+    width: 10%;
+    bottom: 0%;
+    left: 70%;
 }
