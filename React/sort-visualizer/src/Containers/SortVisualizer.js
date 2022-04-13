@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import Bar from "../Components/Bar";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 
-class SortVisualizer extends Component {
+function SortVisualizer () {
+    const [inputInterval, setInputInterval] = useState('50');
+    const [inputArray, setInputArray] = useState("")
     insertionSort = () => {
         // An array of integers to sort.
         let copy = [34, 54, 12, 65, 67];
@@ -20,7 +22,7 @@ class SortVisualizer extends Component {
         }
     };
 
-    render() {
+
         return (
             <div className={"visualizer-container"}>
                 <div className={"array-container"}>
@@ -54,7 +56,7 @@ class SortVisualizer extends Component {
                 </footer>
             </div>
         );
-    }
+    
 }
 
 export default SortVisualizer;
