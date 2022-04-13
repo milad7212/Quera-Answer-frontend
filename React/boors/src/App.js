@@ -15,20 +15,18 @@ const precDiff = (one, two) => {
 };
 
 function App({ intervalTime }) {
-  // todo : get data
-  // res:{
-  // value: 158020,
-  // name: "CodeCup Stock"
-  // }
+  
   const [dataChart, setDataChart] = useState([]);
   const [name, setName] = useState("");
   const [chartData, setChartData] = useState([]);
   let [num, setNum] = useState(0);
   const [diff, setDiff] = useState(0);
+
   useEffect(() => {
     async function fetchData() {
       let dataPrice = await callApi();
       setName(dataPrice.name);
+      
       setDataChart([...dataChart, dataPrice.value]);
     }
     fetchData();
@@ -36,7 +34,9 @@ function App({ intervalTime }) {
       setNum(num + 1);
     }, intervalTime);
   }, [num]);
+
   useEffect(() => {
+    let helpArray=[...dataChart]
     if (dataChart.length > 1) {
       let precTwoValue = precDiff(
         dataChart[dataChart.length - 2],
@@ -44,8 +44,11 @@ function App({ intervalTime }) {
       );
 
       setDiff(precTwoValue);
+      if(dataChart.length>49){
+        
+      }
       setChartData([
-        ...chartData,
+        ...helpArray,
         { value: dataChart[dataChart.length - 1], dif: precTwoValue },
       ]);
     }

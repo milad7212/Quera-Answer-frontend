@@ -23,7 +23,7 @@ function StockCard({ name, ind, diff, lastPrice }) {
           {ind > 1 && (
             <>
               {diff > 0 && "+"}
-              {diff} ٪
+              {diff}٪
             </>
           )}
         </div>
