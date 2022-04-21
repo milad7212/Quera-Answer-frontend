@@ -26,12 +26,12 @@ document.getElementById("submit-btn").addEventListener("click", clickBtn);
 
 
 function clickBtn() {
+
     let itemInput = document.getElementById("item-input");
     let countInput = document.getElementById("count-input");
     let errorContainer = document.getElementById("error-container");
-
     let isUp = document.querySelector('input[value="UP"]');
-    console.log("isUp :>> ", isUp.checked);
+    errorContainer.innerHTML = ''
     if (itemInput.value == "" || countInput.value == "") {
         let errorInvalid = `<p id='error'>INVALID_INPUT</p>`;
         errorContainer.innerHTML = errorInvalid;
@@ -44,9 +44,11 @@ function clickBtn() {
         return;
     }
     let fromIndex = numbers.findIndex((e) => e == itemInput.value);
+
     let toIndex = 0;
     if (isUp.checked) {
-        toIndex = fromIndex + countInput.value;
+        toIndex = +fromIndex + +countInput.value;
+
         if (toIndex > numbers.length - 1 || toIndex < 0) {
             // NOT_POSSIBLE
             let errorInvalid = `<p id='error'> NOT_POSSIBLE</p>`;
@@ -54,7 +56,13 @@ function clickBtn() {
             return;
         }
     } else {
-        toIndex = fromIndex + countInput.value;
+        toIndex = fromIndex - +countInput.value;
+        if (toIndex < 0) {
+            // NOT_POSSIBLE
+            let errorInvalid = `<p id='error'> NOT_POSSIBLE</p>`;
+            errorContainer.innerHTML = errorInvalid;
+            return;
+        }
     }
 
     let element = +itemInput.value;
@@ -68,5 +76,5 @@ function clickBtn() {
         numContainer.appendChild(newSpan);
         newSpan.innerHTML = num;
     });
-    console.log(numbers);
+
 }
